@@ -458,11 +458,16 @@ $phones-media:575px;
   // .canvas{
   // overflow: hidden;
   // position: fixed;
-//   background-size: cover;
+  background-size: cover;
 //   bottom: 0;
   // .bg-movie{
-  // background-image: url(https://imgur.com/VTprJAh.mp4);
-  // background-size: cover;
+  // background-image: url(https://imgur.com/lB4r3DZ.png);
+  background-image: url(https://imgur.com/a3QHLZJ.png);
+  // background-image: url(https://imgur.com/gmAoQ4J.png);
+  // bottom: 0;
+  // background-size: contain;
+  background-attachment: fixed;
+  // background-repeat: no-repeat;
   //   bottom: 0;
   // }
   
@@ -481,7 +486,7 @@ $phones-media:575px;
 .order-section{
   z-index: 4;
 // background-color:rgb(34, 40, 49);opacity:0.6;
-  background-color: $primary-blue;
+  // background-color: $primary-blue;
   // text-align:center;
   //   background-size: contain;
   // bottom: 0;
@@ -595,7 +600,7 @@ $phones-media:575px;
 // 優惠
 .discount-section {
   z-index: 4;
-  background-color: $primary-blue;
+  // background-color: $primary-blue;
   color: #fff;
 
   
@@ -713,7 +718,7 @@ $phones-media:575px;
 // 菜單
 .menu-section {
   z-index: 2;
-  background-color: $primary-blue;
+  // background-color: $primary-blue;
   color: #fff;
 
   .more-btn{
@@ -793,9 +798,12 @@ $phones-media:575px;
 // 頁尾
 .form-section{
   margin-top: 2%;
-  z-index: 2;
   // background-color: $primary-blue;
   background-color: black;
+  height: 100%;
+  width: 96%;
+  left: 2%;
+  z-index:3;
   
   
   .about-card{
