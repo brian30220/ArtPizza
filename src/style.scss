@@ -1,0 +1,865 @@
+$global-max-width: 1200px;
+$primary-blue: #222831;
+// background-color:rgba(34, 40, 49);opacity:0.6;
+$primary-red: #dc3545;
+
+$header1-size: 48px;
+$header2-size: 30px;
+$header3-size: 24px;
+$header4-size: 18px;
+$header5-size: 14px;
+
+$pc-l-media:1200px;
+$pcs-l-media:1199px;
+$pc-media:992px;
+$pcs-media:991px;
+$pad-media:768px;
+$pads-media:767px;
+$phone-media:576px;
+$phones-media:575px;
+
+
+@mixin pcl-width() {
+  // xl
+  @media all and (min-width: $pc-l-media) {
+    @content;
+  }
+}
+@mixin pc-width() {
+  // lg
+  @media all and (min-width: $pc-media)  {
+    @content;
+  }
+}
+@mixin padl-width() {
+  // md
+  @media all and (min-width: $pad-media)  {
+    @content;
+  }
+}
+@mixin pad-width() {
+  // sm
+  @media all and (min-width: $phone-media) {
+    @content;
+  }
+}
+@mixin phone-width() {
+  // xs
+  @media all and (max-width: $phone-media) {
+    @content;
+  }
+}
+
+
+
+* {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  font-family: 'Comfortaa','微軟正黑體','Noto Serif JP','Noto Sans TC',sans-serif;
+
+  font-weight: 400;
+}
+
+.max-1200 {
+  width: 100%;
+  max-width: $global-max-width;
+}
+
+.scrollup-btn{
+  z-index:10;
+  position: fixed;
+  right: 40px;
+  bottom: 40px;
+  width: 36px;
+  height: 36px;
+  background: $primary-blue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity:0;
+  transition:all 0.3s;
+  i{
+    display: block;
+    font-size: 24px;
+    color:white;
+  }
+  
+  &.show{
+    opacity:1;
+  }
+}
+
+.more-btn {
+      border: none;
+      height: 80px;
+      width: 80px;
+      background: $primary-red;
+      color: white;
+      transition: background 0.15s ease-out;
+      
+      &:before {
+        content: "";
+        width: 0%;
+        height: 100%;
+        background: black;
+        position: absolute;
+        left: 0;
+        top: 0;
+        transition: all 0.5s;
+      }
+  
+      &:hover {
+        color: $primary-red;
+        font-weight: 600;
+        &:before {
+          width: 100%;
+        }
+      }
+  }
+
+.p-title{
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  z-index:5;
+  color: black;
+  padding-top: 5px;
+  padding-left: 30px;
+}
+
+.p-description{
+  margin: 0;
+  font-weight: 700;
+  font-size: 16px;
+  z-index:5;
+  color: black;
+  padding-left: 10px;
+}
+
+
+.container{
+  
+}
+
+
+
+
+
+// 內容開始
+
+
+
+// nav
+.header {
+  padding: 16px 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 50%;
+  z-index: 999;
+  @include pc-width {
+      width: 100%;
+    }
+  
+  
+  &.mobile {
+    position: fixed;
+    padding-top: 5%;
+    display: block;
+    // background: white;
+    height: 80px;
+    overflow: hidden;
+    transition: all 0.3s;
+    @include pc-width {
+      display: none;
+    }
+    
+    &.open {
+      height: 440px;
+      
+      .main-menu {
+        left: 0%;
+      }
+    }
+    
+    .main-menu {
+      margin-top: 40px;
+      left: 100%;
+      transition: all 0.5s;
+      
+      .main-navigation {
+        max-width: $global-max-width;
+        margin: auto;
+        background: black;
+        opacity:50%;
+      }
+      
+      .main-navigation ul {
+        list-style: none;
+        margin: 0;
+        
+        li {
+          padding: 8px 8px;
+          border-bottom: 1px solid white;
+          
+          a {
+            margin-left: 16px;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            transition: all 0.2s;
+            display: block;
+            text-decoration: none;
+          }
+          
+          &:hover {
+            a {
+              color: white;
+              transform: translateX(8px);
+            }
+          }
+        }
+      }
+    }
+    
+    .menu-icon {
+      left: 16px;
+      width: 32px;
+      height: 27px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      
+      .menu-line {
+        width: 100%;
+        height: 3px;
+        background: white;
+        border-radius: 1px;
+        display: block;
+        transition: all 0.2s;
+      }
+      
+      &.close-icon {
+        span:nth-child(1) {
+          transform: translateY(12px) rotate(45deg);
+        }
+        span:nth-child(2) {
+          display: none;
+        }
+        span:nth-child(3) {
+          transform: translateY(-12px) rotate(-45deg);
+        }
+      }
+    }
+    
+  }
+  
+  &.web {
+    display: none;
+    @include pc-width {
+      display: block;
+    }
+    
+    .main-navigation ul {
+      display: flex;
+      padding-right: 20%;
+      padding-left: 20%;
+      justify-content: space-between;
+      list-style: none;
+      margin: 0;
+      font-weight: 700;
+      
+      // text-shadow: black 0.1em 0.1em 0.2em;
+    }
+
+    .main-navigation ul li a {
+      color: white;
+      font-size: 16px;
+      font-weight: 500;
+      text-decoration: none;
+    }
+    
+
+    .nav-link:after{
+      content:'';
+      position: absolute;
+      left:50%;
+      bottom:0;
+      transform:translate(-50%, 0);
+      width:0px;
+      height:2px;
+      background:white;
+      transition: all 0.3s;
+    }
+
+
+    .nav-link:hover:after {
+      width:70%;
+    }
+
+  }
+}
+// nav
+
+
+
+
+// 背景1
+.bg{
+  // width: 100%;
+  background-color: #222831;
+  // height: auto;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 3; 
+  opacity:1;
+  // *
+  position: fixed;
+  overflow: hidden;
+  min-width: 960px;
+  
+  .ng-star-inserted{
+    background-position:center;
+    // object-fit:contain;
+    object-fit:cover;
+    object-position:50% 50%;
+    // filter:blur(0);
+    height: 100%;
+    width: 100%;
+    // position: absolute;
+  }
+}
+
+// 背景
+
+.hero-page{
+  padding-top: 10%;
+  width: 100%;
+  color: white;
+  position: absolute;
+  z-index:3;
+  top: 0;
+  
+  // display:flex;
+  justify-content:center;
+  align-items:center;
+  
+  .hero-logo{
+    background-image: url(https://imgur.com/keRIz6d.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    // background-position:center;
+    object-fit: contain;
+    height: 400px;
+    width: 500px;
+    margin:0 auto;
+  }
+  .hero-title {
+    font-weight: 700;
+    font-size: 30px;
+    text-align:center;
+  }
+  .hero-description{
+    text-align:center;
+    bottom: -52px;
+  }
+  
+  
+  
+.mouse {
+  display: block;
+  margin: 0 auto;
+  width: 30px;
+  height: 52px;
+  border-radius: 13px;
+  border: 2px solid white;
+  bottom: 0;
+  position: absolute;
+  left: 50%;
+  margin-left: -14px;
+  
+  span {
+    display: block;
+    margin: 6px auto;
+    width: 4px;
+    height: 4px;
+    border-radius: 4px;
+    background: white;
+    border: 1px solid transparent;
+    -webkit-animation-duration: 1s;
+    animation-duration: 2s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-name: scroll;
+    animation-name: scroll;
+  }
+}
+
+@-webkit-keyframes scroll {
+  0% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translateY(20px);
+    transform: translateY(20px);
+  }
+}
+
+
+@keyframes scroll {
+  0% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translateY(20px);
+    -ms-transform: translateY(20px);
+    transform: translateY(20px);
+  }
+}
+  
+  
+
+  
+  
+  
+}
+// 背景
+
+
+// 大背景
+.opacity{
+  z-index: 3;
+  // padding-top: 80%;
+  // width: 1000px;
+  height: 800px;
+}
+
+.black-bg{
+  height: 100%;
+  width: 96%;
+  left: 2%;
+  //   background-size: cover;
+  // bottom: 0;
+  // opacity: 50%
+  // background-color: $primary-blue;
+  z-index:3;
+
+  // .canvas{
+  // overflow: hidden;
+  // position: fixed;
+//   background-size: cover;
+//   bottom: 0;
+  // .bg-movie{
+  // background-image: url(https://imgur.com/VTprJAh.mp4);
+  // background-size: cover;
+  //   bottom: 0;
+  // }
+  
+  // width: 96%;
+  // left: 2%;
+  // height: 800px;
+  // display: flex;
+
+  // background-repeat: no-repeat;
+  // display:fixed;
+  // }
+}
+// 大背景
+
+// 點餐
+.order-section{
+  z-index: 4;
+// background-color:rgb(34, 40, 49);opacity:0.6;
+  background-color: $primary-blue;
+  // text-align:center;
+  //   background-size: contain;
+  // bottom: 0;
+  // background-image: url(https://imgur.com/gmAoQ4J.png);
+  // background-size: cover;
+  
+  .title-div{
+    opacity:1;
+    width: 330px;
+    position: relative;
+    padding-top: 155px;
+    padding-bottom: 10px;
+    vertical-align: bottom;
+    margin-bottom: 132px;
+    
+    .tw{
+     transform: translateX(0px);
+    font-weight: 700;
+    font-size: 24px;
+    color: white;
+    // float: left;
+    margin-left: 40px;
+    line-height: 1;
+}
+    .en{
+    transform: translateX(0px);
+    font-weight: 700;
+    font-size: 16px;
+    float: right;
+    color: white;
+    margin-right: 20px;
+    line-height: 1;
+    padding-top: 7px;
+    }
+    .border{
+    width: 100%;
+    height: 2px;
+    background-color: #fff;
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: auto;
+    top: auto;
+    z-index: 1;
+    }
+  }
+  
+  
+  
+  .btn-outline-danger{
+    height: 50px;
+    width: 200px;
+    text-align:center;
+    line-height: 30px;
+    border:5px solid $primary-red;
+  
+  }
+  
+  .order-card{
+    padding: 5%;
+    height:100%;
+    width: 100%;
+    
+    .order-image{
+      width: 100%;
+      height: 100%;
+      background-repeat:no-repeat;
+      background-size:cover;
+      object-fit: cover;
+      transition: transform .5s ease;
+    &:hover {
+      transform: scale(1.05);
+    }
+    }
+    
+    
+    .order-inf{
+    padding-top: 5%;
+    // padding-bottom: 10%;
+    width: 100%;
+    height: 300px;
+    color: white;
+    // background-color: white;
+    // padding: 30px;
+    .title{
+      font-weight: 700;
+    }
+    
+    .description{
+      // padding-bottom: 5%;
+      left: 10%;
+      font-size: 16px;
+      font-weight: 500;
+    }
+    .more-btn{
+      display:inline-block;
+      // text-align:right;
+      height: 60px;
+      width: 60px;
+      position: absolute;
+      right: 10%;
+      bottom: 20px;
+    }
+  }
+  }
+}
+// 點餐
+
+
+// 優惠
+.discount-section {
+  z-index: 4;
+  background-color: $primary-blue;
+  color: #fff;
+
+  
+    .title-div{
+    width: 330px;
+    position: relative;
+    padding-top: 155px;
+    padding-bottom: 10px;
+    vertical-align: bottom;
+    margin-bottom: 132px;
+    
+    .tw{
+     transform: translateX(0px);
+    font-weight: 700;
+    font-size: 24px;
+    // float: left;
+    margin-left: 40px;
+    line-height: 1;
+}
+    .en{
+    transform: translateX(0px);
+    font-weight: 700;
+    font-size: 16px;
+    float: right;
+    margin-right: 20px;
+    line-height: 1;
+    padding-top: 7px;
+    }
+    .border{
+    width: 100%;
+    height: 2px;
+    background-color: #fff;
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: auto;
+    top: auto;
+    z-index: 1;
+    }
+  }
+  
+  
+  .discount-item {
+    width: 400;
+    height: 400px;
+
+    .discount-image-1{
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position:10% 30%;
+    object-fit: cover;
+    height: 300px;
+    width: 400px;
+    animation: animation-1 10s infinite;
+    background-image: url(https://images.unsplash.com/photo-1580810464749-35f2dd921665?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80);
+  }
+    @keyframes animation-1 {
+  0%,42%,100%{
+    background-image: url(https://images.unsplash.com/photo-1580810464749-35f2dd921665?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80);
+  }
+  50%,92%{
+    background-image: url(https://images.unsplash.com/photo-1572455021453-7d0b208ae250?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1913&q=80);
+  }
+}
+    
+     .discount-image-2{
+    margin-top: 10%;
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position:10% 30%;
+    object-fit: cover;
+    height: 300px;
+    width: 400px;
+    animation: animation-2 10s infinite;
+    background-image: url(https://images.unsplash.com/photo-1576829825058-e7eba18dc1ee?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1001&q=80);
+    @include padl-width {
+      margin-top: 0%;
+    }
+    
+  }
+    @keyframes animation-2 {
+  0%,42%,100%{
+    background-image: url(https://images.unsplash.com/photo-1544325718-488a5064cfeb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1952&q=80);
+  }
+  50%,92%{
+    background-image: url(https://images.unsplash.com/photo-1576829825058-e7eba18dc1ee?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1001&q=80);
+  }
+}
+    
+    .discount-card{
+      height: 100px;
+      width: 400px;
+      background-color: #fff;
+
+      
+      .more-btn{
+        height: 60px;
+        width: 60px;
+        position: absolute;
+        right: 20px;
+        bottom: 20px;
+        z-index:5;
+      }
+    }
+    
+  }
+  
+ 
+  
+}
+// 優惠
+
+
+// 菜單
+.menu-section {
+  z-index: 2;
+  background-color: $primary-blue;
+  color: #fff;
+
+  .more-btn{
+      position: absolute;
+      right: 20px;
+      bottom: 80px;
+      // left: auto;
+      // top: auto;
+    }
+
+  .title-div{
+    width: 330px;
+    position: relative;
+    padding-top: 155px;
+    padding-bottom: 10px;
+    vertical-align: bottom;
+    margin-bottom: 132px;
+    
+    .tw{
+    transform: translateX(0px);
+    font-weight: 700;
+    font-size: 24px;
+    // float: left;
+    margin-left: 40px;
+    line-height: 1;
+}
+    .en{
+    transform: translateX(0px);
+    font-weight: 700;
+    font-size: 16px;
+    float: right;
+    margin-right: 20px;
+    line-height: 1;
+    padding-top: 7px;
+    }
+    .border{
+    width: 100%;
+    height: 2px;
+    background-color: #fff;
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: auto;
+    top: auto;
+    z-index: 1;
+    }
+  }
+ 
+  .row{
+    padding-bottom: 160px;
+  
+  .menu-item {
+    height: 400px;
+    transition: transform .5s ease;
+    
+    &:hover {
+      transform: scale(1.2);
+    }
+    
+  }
+  
+  .menu-image{
+    background-repeat:no-repeat;
+    background-size:contain;
+    object-fit: contain;
+    height: 400px;
+    width: 100%;
+  }
+    
+   }
+  
+}
+// 菜單
+
+
+// 頁尾
+.form-section{
+  margin-top: 2%;
+  z-index: 2;
+  // background-color: $primary-blue;
+  background-color: black;
+  
+  
+  .about-card{
+    padding: 5%;
+    
+    .logo{
+      width: 400px;
+      height: 300px;
+      background-image: url("https://imgur.com/keRIz6d.jpg");
+      background-size: contain;
+      background-repeat: no-repeat;
+      // background-position:center;
+      object-fit: contain;
+      margin:0 auto;
+    }
+    
+    .relate-link{
+      color: white;
+      font-size: 14px;
+      display:flex;
+      text-align:center;
+    .ftmsg{
+      width: 100%;
+      height: 100%;
+      li a{
+      color: #e5e5e5;
+      text-decoration: none;
+      opacity: 0.5;
+      }
+      a:hover {
+        opacity: 1;
+      }
+    }
+  }
+    
+    .other-inf{
+      margin-top: 5%;
+      color: #e5e5e5;
+      text-align:center;
+       h4{
+          // margin: 0;
+          // margin-left: 8px;
+          font-size: $header4-size;
+        }
+      .fab{
+        font-size: $header3-size;
+        padding-right: 20px;
+        }
+      .fas{
+        margin-top: 3%;
+        font-size: $header5-size;
+        padding-right: 20px;
+      }
+    }
+  }
+  
+
+  
+  .footer-description{
+    // padding-top: 40px;
+    font-size: 14px;
+    padding-bottom: 10px;
+    text-align: center;
+    color: #fff;
+  }
+}
+// 頁尾
